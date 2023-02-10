@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\JoueurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
 class Joueur
 {
@@ -14,12 +16,15 @@ class Joueur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull]
     private ?string $nom = null;
 
     #[ORM\Column(length: 25)]
+    #[Assert\NotNull]
     private ?string $activité = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero]
     private ?int $nb_vaisseau = null;
 
     #[ORM\Column]
